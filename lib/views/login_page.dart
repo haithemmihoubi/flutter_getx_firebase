@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [
+                children: const [
                   Text(
                     "Don't have an account create one ?",
                     style: TextStyle(
