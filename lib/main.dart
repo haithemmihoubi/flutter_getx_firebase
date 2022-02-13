@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_firebase/views/homePage.dart';
+import 'package:flutter_getx_firebase/views/login_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -14,6 +14,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage());
+        home:LoginPage());
   }
 }
