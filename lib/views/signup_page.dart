@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_firebase/controllers/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
@@ -7,13 +8,14 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'login_page.dart';
 
 class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
-
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -80,6 +82,7 @@ class _SignUpState extends State<SignUp> {
                       ),
                       hintText: 'Enter Your Email ',
                       prefixIcon: Icon(Icons.email_outlined)),
+                  controller: emailController,
                 ),
               ),
               SizedBox(
@@ -98,6 +101,8 @@ class _SignUpState extends State<SignUp> {
                       )
                     ]),
                 child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -139,7 +144,11 @@ class _SignUpState extends State<SignUp> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    AuthController.instance.register(
+                        emailController.text.trim(),
+                        passwordController.text.trim());
+                  },
                   child: Text(
                     " Login ",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

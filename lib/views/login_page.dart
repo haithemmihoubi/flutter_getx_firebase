@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_firebase/controllers/auth_controller.dart';
 import 'package:flutter_getx_firebase/views/signup_page.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -9,6 +10,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -64,6 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                       )
                     ]),
                 child: TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
@@ -93,6 +98,8 @@ class _LoginPageState extends State<LoginPage> {
                       )
                     ]),
                 child: TextField(
+                    controller: passwordController,
+                    obscureText: true,
                     decoration: InputDecoration(
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30),
@@ -134,7 +141,10 @@ class _LoginPageState extends State<LoginPage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30))),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    AuthController.instance.login(emailController.text.trim(),
+                        passwordController.text.trim());
+                  },
                   child: Text(
                     " Login ",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -157,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(()=>SignUp());
+                      Get.to(() => SignUp());
                     },
                     child: Text(
                       "Create one",

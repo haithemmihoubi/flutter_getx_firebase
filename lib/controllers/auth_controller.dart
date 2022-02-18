@@ -5,7 +5,7 @@ import 'package:flutter_getx_firebase/views/welcomePage.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  final AuthController instance = Get.find();
+  static AuthController instance = Get.find();
 
   late Rx<User?> _user;
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -23,14 +23,15 @@ class AuthController extends GetxController {
       print("login page");
       Get.offAll(() => LoginPage());
     } else {
-      Get.offAll(() => WelcomePage());
+      Get.offAll(() => WelcomePage(email: user.email ?? "Not Found",));
     }
   }
 
   // Register method wit h email  and password using the firebase method
-  register(String email, password) {
+  register(String email, password) async {
     try {
-      auth.createUserWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(
+          email: email, password: password);
     } catch (err) {
       //catching errors and displaying it in  a snackbar
       Get.snackbar("Aboout user", "user message",
@@ -42,9 +43,32 @@ class AuthController extends GetxController {
           ),
           messageText: Text(
             err.toString(),
-            style:
-                TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ));
     }
+  }
+
+  // login method with email  and password
+  login(String email, password) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+    } catch (err) {
+      //catching errors and displaying it in  a snackbar
+      Get.snackbar("About user", "user message",
+          backgroundColor: Colors.lightBlueAccent,
+          snackPosition: SnackPosition.BOTTOM,
+          titleText: Text(
+            "Login failed",
+            style: TextStyle(color: Colors.white),
+          ),
+          messageText: Text(
+            err.toString(),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+          ));
+    }
+  }
+
+  logout() async {
+    await auth.signOut();
   }
 }
