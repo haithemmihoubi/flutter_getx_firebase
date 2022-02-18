@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_firebase/views/signup_page.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 
-class LoginPage extends StatefulWidget {
+import 'login_page.dart';
+
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -41,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: Text(
-                        "Sign in with your account",
+                        "Login your account",
                         style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
@@ -146,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account create one ?",
+                    "Do you have an account  ?",
                     style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -157,18 +162,39 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(()=>SignUp());
+                      Get.to(LoginPage());
                     },
                     child: Text(
-                      "Create one",
+                      "Log in",
                       style: TextStyle(
                           fontSize: 19,
                           fontWeight: FontWeight.bold,
                           color: Colors.black),
                     ),
                   ),
+
+                  //Icon(Icons.go)
                 ],
               ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(EvaIcons.googleOutline, color: Colors.blue, size: 45),
+                  Icon(
+                    EvaIcons.twitter,
+                    color: Colors.blue,
+                    size: 45,
+                  ),
+                  Icon(
+                    EvaIcons.facebookOutline,
+                    color: Colors.blue,
+                    size: 45,
+                  ),
+                ],
+              )
             ],
           ),
         ),
