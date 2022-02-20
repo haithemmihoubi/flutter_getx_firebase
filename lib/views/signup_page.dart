@@ -24,20 +24,23 @@ class _SignUpState extends State<SignUp> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.only(left: 15,top:0,right: 15,bottom: 0),
           child: Column(
             children: [
               SizedBox(
-                width: w,
-                height: h * 0.24,
-                child: Lottie.asset("assets/images/user.json"),
+                height: 40,
               ),
+              SizedBox(
+                  width: w,
+                  height: h * 0.19,
+                  child: Image.asset("assets/images/add-user.png")),
               SizedBox(
                 width: w,
                 height: h * 0.15,
                 child: Column(
                   children: [
                     Text(
-                      "Welcome back",
+                      "Welcome",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                     ),
@@ -48,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                       alignment: Alignment.centerLeft,
                       margin: EdgeInsets.fromLTRB(15, 0, 0, 0),
                       child: Text(
-                        "Login your account",
+                        "Sign up",
                         style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
@@ -119,6 +122,37 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(
                 height: 30,
+              ),Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 6,
+                        offset: Offset(1, 1),
+                        color: Colors.grey.withOpacity(0.2),
+                      )
+                    ]),
+                child: TextField(
+
+                    obscureText: true,
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 1.0),
+                        ),
+                        hintText: 'Confirm Your password ',
+                        prefixIcon: Icon(Icons.password_outlined))),
+              ),
+              SizedBox(
+                height: 30,
               ),
               Row(
                 children: [
@@ -138,19 +172,24 @@ class _SignUpState extends State<SignUp> {
                 height: 30,
               ),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+
+               style: ElevatedButton.styleFrom(
+                    primary: Colors.lightBlueAccent,
+                    onPrimary: Colors.white,
+                    elevation: 0,
                     shadowColor: Colors.grey,
-                    elevation: 6,
+
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
-                  ),
+                      borderRadius: BorderRadius.circular(32.0),
+
+                    ),),
                   onPressed: () {
                     AuthController.instance.register(
                         emailController.text.trim(),
                         passwordController.text.trim());
                   },
                   child: Text(
-                    " Login ",
+                    "Login",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   )),
               SizedBox(

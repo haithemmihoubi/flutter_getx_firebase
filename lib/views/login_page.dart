@@ -21,12 +21,14 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: EdgeInsets.only(left: 15,top:0,right: 15,bottom: 0),
           child: Column(
             children: [
+              SizedBox(height: 40,),
               SizedBox(
                 width: w,
-                height: h * 0.24,
-                child: Lottie.asset("assets/images/user.json"),
+                height: h * 0.19,
+                child: Image.asset("assets/images/login.png"),
               ),
               SizedBox(
                 width: w,
